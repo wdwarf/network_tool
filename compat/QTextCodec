@@ -1,0 +1,101 @@
+#ifndef QTEXTCODEC_COMPAT_H
+#define QTEXTCODEC_COMPAT_H
+
+#include <QByteArray>
+#include <QString>
+#include <QStringDecoder>
+#include <QStringEncoder>
+#include <QStringConverter>
+#include <memory>
+#include <string>
+#include <unordered_map>
+
+class QTextCodec {
+public:
+    static QTextCodec *codecForName(const char *name) {
+        static std::unordered_map<std::string, std::unique_ptr<QTextCodec>> codecs;
+        static QTextCodec fallback("UTF-8");
+        if (!name || !*name) {
+            return &fallback;
+        }
+
+        const std::string key(name);
+        auto it = codecs.find(key);
+        if (it == codecs.end()) {
+            auto codec = std::make_unique<QTextCodec>(name);
+            it = codecs.emplace(key, std::move(codec)).first;
+        }
+        return it->second.get();
+    }
+
+    explicit QTextCodec(const char *name = "UTF-8") : encodingName_(name ? name : "UTF-8") {
+        if (encodingName_.isEmpty()) {
+            encodingName_ = "UTF-8";
+        }
+    }
+
+    QString toUnicode(const char *data, int size) const {
+        if (!data || size <= 0) {
+            return QString();
+        }
+        return toUnicode(QByteArray(data, size));
+    }
+
+    QString toUnicode(const QByteArray &data) const {
+        if (data.isEmpty()) {
+            return QString();
+        }
+        const auto encoding = resolveEncoding(encodingName_);
+        QStringDecoder decoder(encoding);
+        return decoder.decode(data);
+    }
+
+    QByteArray fromUnicode(const QString &text) const {
+        if (text.isEmpty()) {
+            return QByteArray();
+        }
+        const auto encoding = resolveEncoding(encodingName_);
+        QStringEncoder encoder(encoding);
+        return encoder.encode(text);
+    }
+
+    bool canEncode(const QString &text) const {
+        if (text.isEmpty()) {
+            return true;
+        }
+        const auto encoding = resolveEncoding(encodingName_);
+        QStringEncoder encoder(encoding);
+        return encoder.isValid();
+    }
+
+    const char *name() const {
+        return encodingName_.constData();
+    }
+
+private:
+    static QStringConverter::Encoding resolveEncoding(const QByteArray &name) {
+        if (name.isEmpty()) {
+            return QStringConverter::Utf8;
+        }
+
+        const QByteArray trimmed = QByteArray(name).trimmed();
+        if (trimmed.isEmpty()) {
+            return QStringConverter::Utf8;
+        }
+
+        if (auto encoding = QStringConverter::encodingForName(trimmed.constData())) {
+            return *encoding;
+        }
+
+        const QByteArray lower = trimmed.toLower();
+        if (lower == "utf-8" || lower == "utf8") {
+            return QStringConverter::Utf8;
+        }
+
+        return QStringConverter::Utf8;
+    }
+
+    QByteArray encodingName_;
+};
+
+#endif

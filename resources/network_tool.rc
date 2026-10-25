@@ -1,0 +1,5 @@
+// 应用图标资源：经 windres 编进 network_tool.exe 资源段。
+// Windows 以首个 ICON 资源作为 Explorer/任务栏/标题栏图标。
+// .ico 与本 .rc 同处 resources/ 目录，windres 按资源文件所在目录解析相对路径。
+#define IDI_ICON1 1
+IDI_ICON1 ICON DISCARDABLE "network_tool.ico"

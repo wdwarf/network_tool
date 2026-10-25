@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>network_tool.qm</file>
+    </qresource>
+</RCC>

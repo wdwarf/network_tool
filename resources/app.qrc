@@ -1,0 +1,22 @@
+<RCC>
+    <!-- 资源文件统一收纳于 resources/。保留既有资源 URL：
+         network_tool.png  -> :/network_tool.png        （prefix="/")
+         cat-*.svg/cmd-*.svg -> :/resources/<name>.svg   （prefix="/resources"）-->
+    <qresource prefix="/">
+        <file>network_tool.png</file>
+    </qresource>
+    <qresource prefix="/resources">
+        <file>cat-tcp-server.svg</file>
+        <file>cat-tcp-client.svg</file>
+        <file>cat-udp-server.svg</file>
+        <file>cat-udp-client.svg</file>
+        <file>cat-broadcast.svg</file>
+        <file>cat-multicast.svg</file>
+        <file>cmd-new.svg</file>
+        <file>cmd-close.svg</file>
+        <file>cmd-save.svg</file>
+        <file>cmd-load.svg</file>
+        <file>cmd-quit.svg</file>
+        <file>cmd-about.svg</file>
+    </qresource>
+</RCC>
