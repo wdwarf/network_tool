@@ -221,6 +221,7 @@ NetModule::NetModule(QWidget* parent, bool enableScript)
     connect(m_scriptPanel, &ScriptPanel::sendRequested, this,
             [this](const QByteArray& data, const QString& peer) {
               Q_UNUSED(peer);  // 单连接模块：peer 无意义，沿用唯一对端发送
+              if (data.isEmpty()) return;
               if (m_showTx->isChecked())
                 appendReceived(data, QStringLiteral("TX"), QString());
               onSend(data);
@@ -323,6 +324,7 @@ void NetModule::sendClicked() {
     QMessageBox::warning(this, tr("Send error"), err);
     return;
   }
+  if (data.isEmpty()) return;
   const int count = m_countSpin->value();
   const int interval = m_intervalSpin->value();
   if (count == 0) return;  // 0 次：不发送、不循环

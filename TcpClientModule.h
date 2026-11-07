@@ -10,7 +10,7 @@ class QLineEdit;
 class QPushButton;
 class QCheckBox;
 
-// TCP 客户端：连接远端 host:port，可指定本地端口，收发数据。
+// TCP 客户端：连接远端 host:port，可指定本地 IP 和端口，收发数据。
 class TcpClientModule : public NetModule {
   Q_OBJECT
  public:
@@ -44,6 +44,7 @@ class TcpClientModule : public NetModule {
   void resetSocketLayerHard();
 
   QComboBox* m_host = nullptr;
+  QComboBox* m_localIp = nullptr;
   QLineEdit* m_port = nullptr;
   QLineEdit* m_localPort = nullptr;
   QCheckBox* m_keepalive = nullptr;  // TCP 保活开关

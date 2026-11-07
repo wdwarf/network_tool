@@ -9,7 +9,7 @@ class QComboBox;
 class QLineEdit;
 class QPushButton;
 
-// UDP 客户端：向目标发送数据报；Open 绑定本地端口后可接收回复。
+// UDP 客户端：向目标发送数据报；Open 绑定本地地址和端口后可接收回复。
 class UdpClientModule : public NetModule {
   Q_OBJECT
  public:
@@ -27,6 +27,7 @@ class UdpClientModule : public NetModule {
 
  private:
   QComboBox* m_targetIp = nullptr;
+  QComboBox* m_localIp = nullptr;
   QLineEdit* m_targetPort = nullptr;
   QLineEdit* m_localPort = nullptr;
   QPushButton* m_openBtn = nullptr;

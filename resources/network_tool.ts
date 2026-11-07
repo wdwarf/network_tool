@@ -115,177 +115,177 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../MainWindow.cpp" line="40"/>
-        <location filename="../MainWindow.cpp" line="44"/>
+        <location filename="../MainWindow.cpp" line="70"/>
+        <location filename="../MainWindow.cpp" line="74"/>
         <source>Server</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="42"/>
-        <location filename="../MainWindow.cpp" line="46"/>
+        <location filename="../MainWindow.cpp" line="72"/>
+        <location filename="../MainWindow.cpp" line="76"/>
         <source>Client</source>
         <translation>客户端</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="48"/>
-        <location filename="../MainWindow.cpp" line="54"/>
+        <location filename="../MainWindow.cpp" line="78"/>
+        <location filename="../MainWindow.cpp" line="84"/>
         <source>Broadcast</source>
         <translation>广播</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="50"/>
-        <location filename="../MainWindow.cpp" line="54"/>
+        <location filename="../MainWindow.cpp" line="80"/>
+        <location filename="../MainWindow.cpp" line="84"/>
         <source>Multicast</source>
         <translation>组播</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="52"/>
+        <location filename="../MainWindow.cpp" line="82"/>
         <source>TCP Server</source>
         <translation>TCP 服务器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="52"/>
+        <location filename="../MainWindow.cpp" line="82"/>
         <source>TCP Client</source>
         <translation>TCP 客户端</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="53"/>
+        <location filename="../MainWindow.cpp" line="83"/>
         <source>UDP Server</source>
         <translation>UDP 服务器</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="53"/>
+        <location filename="../MainWindow.cpp" line="83"/>
         <source>UDP Client</source>
         <translation>UDP 客户端</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="59"/>
+        <location filename="../MainWindow.cpp" line="89"/>
         <source>Network Test Tool</source>
         <translation>网络测试工具</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="85"/>
+        <location filename="../MainWindow.cpp" line="116"/>
         <source>&amp;Close Instance</source>
         <translation>关闭实例(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="87"/>
+        <location filename="../MainWindow.cpp" line="118"/>
         <source>Close the active instance tab</source>
         <translation>关闭当前实例页签</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="93"/>
+        <location filename="../MainWindow.cpp" line="124"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="98"/>
+        <location filename="../MainWindow.cpp" line="129"/>
         <source>&amp;Save Config</source>
         <translation>保存配置(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="100"/>
+        <location filename="../MainWindow.cpp" line="131"/>
         <source>Save current UI configuration to a JSON file</source>
         <translation>将当前界面配置保存为 JSON 文件</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="103"/>
+        <location filename="../MainWindow.cpp" line="134"/>
         <source>Save Config</source>
         <translation>保存配置</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="104"/>
-        <location filename="../MainWindow.cpp" line="116"/>
+        <location filename="../MainWindow.cpp" line="135"/>
+        <location filename="../MainWindow.cpp" line="147"/>
         <source>JSON (*.json);;All files (*)</source>
         <translation>JSON (*.json);;所有文件 (*)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="107"/>
+        <location filename="../MainWindow.cpp" line="138"/>
         <source>Save failed</source>
         <translation>保存失败</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="108"/>
+        <location filename="../MainWindow.cpp" line="139"/>
         <source>Could not write %1</source>
         <translation>无法写入 %1</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="111"/>
+        <location filename="../MainWindow.cpp" line="142"/>
         <source>&amp;Load Config</source>
         <translation>加载配置(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="113"/>
+        <location filename="../MainWindow.cpp" line="144"/>
         <source>Load a UI configuration from a JSON file</source>
         <translation>从 JSON 文件加载界面配置</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="116"/>
+        <location filename="../MainWindow.cpp" line="147"/>
         <source>Load Config</source>
         <translation>加载配置</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="119"/>
+        <location filename="../MainWindow.cpp" line="150"/>
         <source>Load failed</source>
         <translation>加载失败</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="120"/>
+        <location filename="../MainWindow.cpp" line="151"/>
         <source>Could not read %1</source>
         <translation>无法读取 %1</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="124"/>
+        <location filename="../MainWindow.cpp" line="155"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="125"/>
+        <location filename="../MainWindow.cpp" line="156"/>
         <source>&amp;New</source>
         <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="136"/>
+        <location filename="../MainWindow.cpp" line="167"/>
         <source>Main</source>
         <translation>主工具栏</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="142"/>
+        <location filename="../MainWindow.cpp" line="173"/>
         <source>Add a new instance</source>
         <translation>添加新实例</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="153"/>
+        <location filename="../MainWindow.cpp" line="184"/>
         <source>&amp;View</source>
         <translation>视图(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="154"/>
+        <location filename="../MainWindow.cpp" line="185"/>
         <source>Show &amp;Toolbar</source>
         <translation>显示工具栏(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="164"/>
+        <location filename="../MainWindow.cpp" line="195"/>
         <source>St&amp;yle</source>
         <translation>样式(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="181"/>
+        <location filename="../MainWindow.cpp" line="212"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="182"/>
+        <location filename="../MainWindow.cpp" line="213"/>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="185"/>
+        <location filename="../MainWindow.cpp" line="216"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="186"/>
+        <location filename="../MainWindow.cpp" line="217"/>
         <source>&lt;b&gt;Network Test Tool&lt;/b&gt;&lt;br&gt;Multi-instance TCP/UDP testing.&lt;br&gt;Qt %1</source>
         <translation>&lt;b&gt;网络测试工具&lt;/b&gt;&lt;br&gt;多实例 TCP/UDP 测试。&lt;br&gt;Qt %1</translation>
     </message>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <location filename="../NetModule.cpp" line="173"/>
-        <location filename="../NetModule.cpp" line="378"/>
+        <location filename="../NetModule.cpp" line="380"/>
         <source>Send</source>
         <translation>发送</translation>
     </message>
@@ -469,12 +469,12 @@
         <translation>脚本</translation>
     </message>
     <message>
-        <location filename="../NetModule.cpp" line="323"/>
+        <location filename="../NetModule.cpp" line="324"/>
         <source>Send error</source>
         <translation>发送错误</translation>
     </message>
     <message>
-        <location filename="../NetModule.cpp" line="343"/>
+        <location filename="../NetModule.cpp" line="345"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
@@ -652,19 +652,19 @@
 <context>
     <name>ScriptPanel</name>
     <message>
-        <location filename="../ScriptPanel.cpp" line="62"/>
-        <location filename="../ScriptPanel.cpp" line="230"/>
-        <location filename="../ScriptPanel.cpp" line="247"/>
+        <location filename="../ScriptPanel.cpp" line="64"/>
+        <location filename="../ScriptPanel.cpp" line="296"/>
+        <location filename="../ScriptPanel.cpp" line="313"/>
         <source>Run script</source>
         <translation>运行脚本</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="63"/>
+        <location filename="../ScriptPanel.cpp" line="65"/>
         <source>Python: ?</source>
         <translation>Python：?</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="70"/>
+        <location filename="../ScriptPanel.cpp" line="73"/>
         <source>def on_receive(data, peer):
     if data == b&quot;PING&quot;:
         send(b&quot;PONG&quot;)
@@ -687,38 +687,38 @@ def on_stop():
     log(&quot;stopped&quot;)</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="91"/>
+        <location filename="../ScriptPanel.cpp" line="94"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="92"/>
+        <location filename="../ScriptPanel.cpp" line="95"/>
         <source>Find/Replace (Ctrl+F)</source>
         <translation>查找/替换 (Ctrl+F)</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="127"/>
-        <location filename="../ScriptPanel.cpp" line="135"/>
+        <location filename="../ScriptPanel.cpp" line="130"/>
+        <location filename="../ScriptPanel.cpp" line="138"/>
         <source>Script ▾</source>
         <translation>脚本 ▾</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="135"/>
+        <location filename="../ScriptPanel.cpp" line="138"/>
         <source>Script ▴</source>
         <translation>脚本 ▴</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="240"/>
+        <location filename="../ScriptPanel.cpp" line="306"/>
         <source>Stop script</source>
         <translation>停止脚本</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="259"/>
+        <location filename="../ScriptPanel.cpp" line="325"/>
         <source>Python: ready</source>
         <translation>Python：就绪</translation>
     </message>
     <message>
-        <location filename="../ScriptPanel.cpp" line="259"/>
+        <location filename="../ScriptPanel.cpp" line="325"/>
         <source>Python not found</source>
         <translation>未找到 Python</translation>
     </message>
@@ -737,62 +737,84 @@ def on_stop():
     </message>
     <message>
         <location filename="../TcpClientModule.cpp" line="40"/>
+        <source>Local IP:</source>
+        <translation>本地 IP：</translation>
+    </message>
+    <message>
+        <location filename="../TcpClientModule.cpp" line="47"/>
         <source>Local port:</source>
         <translation>本地端口：</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="42"/>
+        <location filename="../TcpClientModule.cpp" line="49"/>
         <source>auto</source>
         <translation>自动</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="45"/>
-        <location filename="../TcpClientModule.cpp" line="129"/>
+        <location filename="../TcpClientModule.cpp" line="52"/>
+        <location filename="../TcpClientModule.cpp" line="141"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="49"/>
+        <location filename="../TcpClientModule.cpp" line="56"/>
         <source>Keep-Alive</source>
         <translation>保活</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="153"/>
+        <location filename="../TcpClientModule.cpp" line="162"/>
+        <location filename="../TcpClientModule.cpp" line="171"/>
+        <location filename="../TcpClientModule.cpp" line="177"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="153"/>
+        <location filename="../TcpClientModule.cpp" line="162"/>
         <source>Invalid port</source>
         <translation>端口无效</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="173"/>
+        <location filename="../TcpClientModule.cpp" line="171"/>
+        <source>Invalid local port</source>
+        <translation>本地端口无效</translation>
+    </message>
+    <message>
+        <location filename="../TcpClientModule.cpp" line="177"/>
+        <source>Invalid local IP</source>
+        <translation>本地 IP 无效</translation>
+    </message>
+    <message>
+        <location filename="../TcpClientModule.cpp" line="190"/>
+        <source>Bind failed</source>
+        <translation>绑定失败</translation>
+    </message>
+    <message>
+        <location filename="../TcpClientModule.cpp" line="198"/>
         <source>Connecting...</source>
         <translation>连接中...</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="178"/>
+        <location filename="../TcpClientModule.cpp" line="203"/>
         <source>Disconnect</source>
         <translation>断开</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="172"/>
+        <location filename="../TcpClientModule.cpp" line="197"/>
         <source>Connecting to %1:%2...</source>
         <translation>正在连接 %1:%2...</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="201"/>
+        <location filename="../TcpClientModule.cpp" line="226"/>
         <source>Connected to %1:%2</source>
         <translation>已连接到 %1:%2</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="214"/>
+        <location filename="../TcpClientModule.cpp" line="239"/>
         <source>Disconnected</source>
         <translation>已断开</translation>
     </message>
     <message>
-        <location filename="../TcpClientModule.cpp" line="223"/>
+        <location filename="../TcpClientModule.cpp" line="248"/>
         <source>Socket error: %1</source>
         <translation>套接字错误：%1</translation>
     </message>
@@ -978,64 +1000,103 @@ def on_stop():
     </message>
     <message>
         <location filename="../UdpClientModule.cpp" line="28"/>
+        <source>Local IP:</source>
+        <translation>本地 IP：</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="34"/>
         <source>Local port:</source>
         <translation>本地端口：</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="30"/>
+        <location filename="../UdpClientModule.cpp" line="36"/>
         <source>auto</source>
         <translation>自动</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="33"/>
-        <location filename="../UdpClientModule.cpp" line="52"/>
+        <location filename="../UdpClientModule.cpp" line="39"/>
+        <location filename="../UdpClientModule.cpp" line="57"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="39"/>
-        <source>Open binds a local port so you can receive replies. Sending works without Open (auto-allocates a source port).</source>
-        <translation>Open 会绑定本地端口以便接收回复。不 Open 也可发送（自动分配源端口）。</translation>
+        <location filename="../UdpClientModule.cpp" line="45"/>
+        <source>Open binds the selected local IP and port so you can send and receive.</source>
+        <translation>打开后将绑定所选本地 IP 和端口，才能发送和接收数据。</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="54"/>
+        <location filename="../UdpClientModule.cpp" line="88"/>
+        <source>Bound %1:%2</source>
+        <translation>已绑定 %1:%2</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="104"/>
+        <source>Receive failed: %1</source>
+        <translation>接收失败：%1</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="108"/>
+        <source>Received datagram without a valid sender address</source>
+        <translation>收到的数据报来源地址无效</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="120"/>
+        <source>Open the UDP client before sending</source>
+        <translation>请先打开 UDP 客户端再发送</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="135"/>
+        <source>Send failed</source>
+        <translation>发送失败</translation>
+    </message>
+    <message>
+        <source>Open binds a local port so you can receive replies. Sending works without Open (auto-allocates a source port).</source>
+        <translation type="vanished">Open 会绑定本地端口以便接收回复。不 Open 也可发送（自动分配源端口）。</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="61"/>
         <source>Closed</source>
         <translation>已关闭</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="64"/>
-        <location filename="../UdpClientModule.cpp" line="96"/>
-        <location filename="../UdpClientModule.cpp" line="101"/>
+        <location filename="../UdpClientModule.cpp" line="71"/>
+        <location filename="../UdpClientModule.cpp" line="77"/>
+        <location filename="../UdpClientModule.cpp" line="126"/>
+        <location filename="../UdpClientModule.cpp" line="131"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="64"/>
+        <location filename="../UdpClientModule.cpp" line="71"/>
         <source>Invalid local port</source>
         <translation>本地端口无效</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="69"/>
+        <location filename="../UdpClientModule.cpp" line="77"/>
+        <source>Invalid local IP</source>
+        <translation>本地 IP 无效</translation>
+    </message>
+    <message>
+        <location filename="../UdpClientModule.cpp" line="81"/>
         <source>Bind failed</source>
         <translation>绑定失败</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="72"/>
+        <location filename="../UdpClientModule.cpp" line="84"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="74"/>
         <source>Bound local port %1</source>
-        <translation>已绑定本地端口 %1</translation>
+        <translation type="vanished">已绑定本地端口 %1</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="96"/>
+        <location filename="../UdpClientModule.cpp" line="126"/>
         <source>Invalid target port</source>
         <translation>目标端口无效</translation>
     </message>
     <message>
-        <location filename="../UdpClientModule.cpp" line="101"/>
+        <location filename="../UdpClientModule.cpp" line="131"/>
         <source>Invalid target IP</source>
         <translation>目标 IP 无效</translation>
     </message>

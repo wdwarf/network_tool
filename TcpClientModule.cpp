@@ -37,6 +37,13 @@ TcpClientModule::TcpClientModule(QWidget* parent) : NetModule(parent) {
   m_port = new QLineEdit(QStringLiteral("8080"));
   m_port->setMaximumWidth(80);
   row->addWidget(m_port);
+  row->addWidget(new QLabel(tr("Local IP:")));
+  m_localIp = new QComboBox;
+  m_localIp->setEditable(true);
+  m_localIp->setMinimumWidth(120);
+  DataUtils::fillBindIpCombo(m_localIp);
+  m_localIp->setCurrentIndex(m_localIp->findData(QStringLiteral("any")));
+  row->addWidget(m_localIp);
   row->addWidget(new QLabel(tr("Local port:")));
   m_localPort = new QLineEdit;
   m_localPort->setPlaceholderText(tr("auto"));
@@ -135,6 +142,7 @@ void TcpClientModule::resetControls() {
   setSendEnabled(false);
   m_host->setEnabled(true);
   m_port->setEnabled(true);
+  m_localIp->setEnabled(true);
   m_localPort->setEnabled(true);
   m_connBtn->setEnabled(true);
 }
@@ -148,14 +156,25 @@ void TcpClientModule::onConnectDisconnect() {
     return;
   }
 
-  m_host->setEnabled(false);
-  m_port->setEnabled(false);
-  m_localPort->setEnabled(false);
-
   bool ok = false;
   const quint16 port = m_port->text().toUShort(&ok);
   if (!ok || port == 0) {
     QMessageBox::warning(this, tr("Error"), tr("Invalid port"));
+    return;
+  }
+  quint16 localP = 0;
+  const QString lp = m_localPort->text().trimmed();
+  if (!lp.isEmpty()) {
+    bool localPortOk = false;
+    localP = lp.toUShort(&localPortOk);
+    if (!localPortOk || localP == 0) {
+      QMessageBox::warning(this, tr("Error"), tr("Invalid local port"));
+      return;
+    }
+  }
+  const QHostAddress bindAddr = DataUtils::selectedBindAddr(m_localIp);
+  if (bindAddr.isNull()) {
+    QMessageBox::warning(this, tr("Error"), tr("Invalid local IP"));
     return;
   }
   // 上一次连接若失败，Qt 不会拆毁 bound 套接字引擎：cachedSocketDescriptor
@@ -164,16 +183,17 @@ void TcpClientModule::onConnectDisconnect() {
   // 错误，表现为"第二次连接先报 Connection refused 再连上"。发起新连接前
   // 原位重建套接字以获得干净套接字层。
   resetSocketLayerHard();
-  // 可选绑定本地端口（否则由系统分配）；ReuseAddressHint 允许端口重用，
-  // 以便断开后用同一本地端口重连（绕过 TIME_WAIT 占用）。
-  const QString lp = m_localPort->text().trimmed();
-  if (!lp.isEmpty()) {
-    bool ok2 = false;
-    const quint16 localP = lp.toUShort(&ok2);
-    if (ok2 && localP != 0)
-      m_socket->bind(QHostAddress(QHostAddress::Any), localP,
-                     QAbstractSocket::ReuseAddressHint);
+  // 显式绑定本地地址；端口留空时绑定所选地址上的临时端口。
+  if (!m_socket->bind(bindAddr, localP, QAbstractSocket::ReuseAddressHint)) {
+    const QString error = m_socket->errorString();
+    resetSocketLayerHard();
+    QMessageBox::warning(this, tr("Bind failed"), error);
+    return;
   }
+  m_host->setEnabled(false);
+  m_port->setEnabled(false);
+  m_localIp->setEnabled(false);
+  m_localPort->setEnabled(false);
   logInfo(tr("Connecting to %1:%2...").arg(m_host->currentText()).arg(port));
   m_connBtn->setText(tr("Connecting..."));
   m_socket->connectToHost(m_host->currentText(), port);
@@ -248,6 +268,7 @@ QJsonObject TcpClientModule::saveState() const {
   QJsonObject o = NetModule::saveState();
   o["host"] = m_host->currentText();
   o["port"] = m_port->text();
+  o["localIp"] = m_localIp->currentText();
   o["localPort"] = m_localPort->text();
   if (m_keepalive) o["keepalive"] = m_keepalive->isChecked();
   return o;
@@ -257,6 +278,8 @@ void TcpClientModule::loadState(const QJsonObject& o) {
   NetModule::loadState(o);
   if (o.contains("host")) m_host->setCurrentText(o.value("host").toString());
   if (o.contains("port")) m_port->setText(o.value("port").toString());
+  if (o.contains("localIp"))
+    DataUtils::setComboCurrentText(m_localIp, o.value("localIp").toString());
   if (o.contains("localPort"))
     m_localPort->setText(o.value("localPort").toString());
   if (o.contains("keepalive") && m_keepalive)

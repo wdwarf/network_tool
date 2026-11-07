@@ -252,6 +252,7 @@ void ScriptPanel::applyEditorPalette() {
       darkTheme ? QColor(0x85, 0x85, 0x85) : QColor(0x23, 0x78, 0x93);
   const QColor selectionBackground =
       darkTheme ? QColor(0x26, 0x4F, 0x78) : QColor(0xAD, 0xD6, 0xFF);
+  const QColor caretColor = darkTheme ? QColor(0xFF, 0xFF, 0xFF) : Qt::black;
   // The translucent highlight is blended with the editor background. Choose
   // the text color from that background rather than from the raw highlight
   // color, otherwise a light theme can produce white text on light blue.
@@ -262,6 +263,7 @@ void ScriptPanel::applyEditorPalette() {
     m_edit->styleSetBack(style, sciColor(background));
   m_edit->styleSetBack(STYLE_LINENUMBER, sciColor(lineNumberBackground));
   m_edit->styleSetFore(STYLE_LINENUMBER, sciColor(lineNumberText));
+  m_edit->send(SCI_SETCARETFORE, sciColor(caretColor));
 
   // Match LogEditor: draw an opaque selection below the text and explicitly
   // provide its foreground color.

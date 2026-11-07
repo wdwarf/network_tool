@@ -25,6 +25,12 @@ UdpClientModule::UdpClientModule(QWidget* parent) : NetModule(parent) {
   m_targetPort = new QLineEdit(QStringLiteral("8080"));
   m_targetPort->setMaximumWidth(80);
   row->addWidget(m_targetPort);
+  row->addWidget(new QLabel(tr("Local IP:")));
+  m_localIp = new QComboBox;
+  m_localIp->setEditable(true);
+  m_localIp->setMinimumWidth(120);
+  DataUtils::fillBindIpCombo(m_localIp);
+  row->addWidget(m_localIp);
   row->addWidget(new QLabel(tr("Local port:")));
   m_localPort = new QLineEdit;
   m_localPort->setPlaceholderText(tr("auto"));
@@ -36,21 +42,22 @@ UdpClientModule::UdpClientModule(QWidget* parent) : NetModule(parent) {
   configLayout()->addLayout(row);
 
   configLayout()->addWidget(new ElidedLabel(
-      tr("Open binds a local port so you can receive replies. "
-         "Sending works without Open (auto-allocates a source port).")));
+      tr("Open binds the selected local IP and port so you can send and receive.")));
 
   connect(m_openBtn, &QPushButton::clicked, this,
           &UdpClientModule::onOpenClose);
   connect(&m_socket, &QUdpSocket::readyRead, this,
           &UdpClientModule::onReadyRead);
-  setSendEnabled(true);
+  setSendEnabled(false);
 }
 
 void UdpClientModule::onOpenClose() {
   if (m_socket.state() == QAbstractSocket::BoundState) {
     m_socket.close();
     m_openBtn->setText(tr("Open"));
+    m_localIp->setEnabled(true);
     m_localPort->setEnabled(true);
+    setSendEnabled(false);
     logInfo(tr("Closed"));
     if (auto* b = scriptBridge(); b && b->isRunning()) b->emitStop();
     return;
@@ -65,13 +72,22 @@ void UdpClientModule::onOpenClose() {
       return;
     }
   }
-  if (!m_socket.bind(QHostAddress(QHostAddress::Any), localP)) {
+  const QHostAddress bindAddr = DataUtils::selectedBindAddr(m_localIp);
+  if (bindAddr.isNull()) {
+    QMessageBox::warning(this, tr("Error"), tr("Invalid local IP"));
+    return;
+  }
+  if (!m_socket.bind(bindAddr, localP)) {
     QMessageBox::warning(this, tr("Bind failed"), m_socket.errorString());
     return;
   }
   m_openBtn->setText(tr("Close"));
+  m_localIp->setEnabled(false);
   m_localPort->setEnabled(false);
-  logInfo(tr("Bound local port %1").arg(m_socket.localPort()));
+  setSendEnabled(true);
+  logInfo(tr("Bound %1:%2")
+              .arg(bindAddr.toString())
+              .arg(m_socket.localPort()));
   if (auto* b = scriptBridge(); b && b->isRunning()) b->emitStart();
 }
 
@@ -81,8 +97,18 @@ void UdpClientModule::onReadyRead() {
     datagram.resize(int(m_socket.pendingDatagramSize()));
     QHostAddress senderIP;
     quint16 senderPort = 0;
-    m_socket.readDatagram(datagram.data(), datagram.size(), &senderIP,
-                          &senderPort);
+    const qint64 bytesRead =
+        m_socket.readDatagram(datagram.data(), datagram.size(), &senderIP,
+                              &senderPort);
+    if (bytesRead < 0) {
+      logInfo(tr("Receive failed: %1").arg(m_socket.errorString()));
+      break;
+    }
+    if (senderIP.isNull()) {
+      logInfo(tr("Received datagram without a valid sender address"));
+      continue;
+    }
+    datagram.resize(int(bytesRead));
     appendReceived(
         datagram, QStringLiteral("RX"),
         QStringLiteral("%1:%2").arg(senderIP.toString()).arg(senderPort));
@@ -90,6 +116,10 @@ void UdpClientModule::onReadyRead() {
 }
 
 void UdpClientModule::onSend(const QByteArray& data) {
+  if (m_socket.state() != QAbstractSocket::BoundState) {
+    logInfo(tr("Open the UDP client before sending"));
+    return;
+  }
   bool ok = false;
   const quint16 port = m_targetPort->text().toUShort(&ok);
   if (!ok || port == 0) {
@@ -101,13 +131,15 @@ void UdpClientModule::onSend(const QByteArray& data) {
     QMessageBox::warning(this, tr("Error"), tr("Invalid target IP"));
     return;
   }
-  m_socket.writeDatagram(data, addr, port);
+  if (m_socket.writeDatagram(data, addr, port) < 0)
+    QMessageBox::warning(this, tr("Send failed"), m_socket.errorString());
 }
 
 QJsonObject UdpClientModule::saveState() const {
   QJsonObject o = NetModule::saveState();
   o["targetIp"] = m_targetIp->currentText();
   o["targetPort"] = m_targetPort->text();
+  o["localIp"] = m_localIp->currentText();
   o["localPort"] = m_localPort->text();
   return o;
 }
@@ -118,6 +150,8 @@ void UdpClientModule::loadState(const QJsonObject& o) {
     m_targetIp->setCurrentText(o.value("targetIp").toString());
   if (o.contains("targetPort"))
     m_targetPort->setText(o.value("targetPort").toString());
+  if (o.contains("localIp"))
+    DataUtils::setComboCurrentText(m_localIp, o.value("localIp").toString());
   if (o.contains("localPort"))
     m_localPort->setText(o.value("localPort").toString());
 }
