@@ -47,20 +47,26 @@ TcpServerModule::TcpServerModule(QWidget* parent) : QWidget(parent) {
   // 用于探测客户端是否已掉线（默认关闭，避免无谓探测流量）。
   m_keepalive = new QCheckBox(tr("Keep-Alive"));
   topRow->addWidget(m_keepalive);
-  // Events 日志自动滚动开关：ON=粘底跟随，OFF=视图静止
-  // （LogEditor 默认 autoScroll_=true，且 m_events 在此之后才创建，
-  // 故不在此调 setAutoScroll；构造默认已是 ON）
-  m_eventsAutoScroll = new QCheckBox(tr("Auto-scroll"));
-  m_eventsAutoScroll->setChecked(true);
-  topRow->addWidget(m_eventsAutoScroll);
   topRow->addStretch();
   m_status = new ElidedLabel(tr("Not listening"));
   topRow->addWidget(m_status);
 
   m_tabs = new QTabWidget;
   m_tabs->setTabsClosable(true);
+  auto* eventsPage = new QWidget;
+  auto* eventsLayout = new QVBoxLayout(eventsPage);
+  auto* eventsToolbar = new QHBoxLayout;
+  // LogEditor 默认自动滚动，复选框初始状态与之保持一致。
+  m_eventsAutoScroll = new QCheckBox(tr("Auto-scroll"));
+  m_eventsAutoScroll->setChecked(true);
+  eventsToolbar->addWidget(m_eventsAutoScroll);
+  auto* clearEventsBtn = new QPushButton(tr("Clear"));
+  eventsToolbar->addWidget(clearEventsBtn);
+  eventsToolbar->addStretch();
+  eventsLayout->addLayout(eventsToolbar);
   m_events = new LogEditor;
-  m_tabs->addTab(m_events, tr("Events"));
+  eventsLayout->addWidget(m_events, 1);
+  m_tabs->addTab(eventsPage, tr("Events"));
   // Events 与 Script 页签固定不可关闭：清除关闭按钮
   m_tabs->tabBar()->setTabButton(0, QTabBar::RightSide, nullptr);
   m_tabs->tabBar()->setTabButton(0, QTabBar::LeftSide, nullptr);
@@ -112,6 +118,8 @@ TcpServerModule::TcpServerModule(QWidget* parent) : QWidget(parent) {
   // Events 日志自动滚动切换
   connect(m_eventsAutoScroll, &QCheckBox::toggled, this,
           [this](bool on) { m_events->setAutoScroll(on); });
+  connect(clearEventsBtn, &QPushButton::clicked, m_events,
+          &LogEditor::clear);
 }
 
 void TcpServerModule::logEvent(const QString& msg) {
